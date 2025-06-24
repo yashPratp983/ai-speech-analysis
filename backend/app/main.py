@@ -37,9 +37,10 @@ app.add_middleware(
 )
 
 def include_routers(app):
-    from app.api.v1 import speech_therepy
+    from app.api.v1 import speech_therepy, health
     
     app.include_router(speech_therepy.router, prefix="/api/v1", tags=["speech therapy"])
+    app.include_router(health.router, prefix="/api/v1", tags=["health"])
 
 include_routers(app)
 logger.info("Application startup complete. Ready to serve requests.")
