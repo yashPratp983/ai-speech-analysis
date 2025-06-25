@@ -1,0 +1,36 @@
+name: speech_feedback_app
+description: A Flutter app for speech feedback with AI.
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.0
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # HTTP requests for API calls
+  http: ^1.1.0
+
+  # Audio recording functionality
+  flutter_sound: ^9.2.13
+
+  # Handle device permissions
+  permission_handler: ^11.0.1
+
+  # Access device file system
+  path_provider: ^2.1.1
+
+  # UI icons
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
