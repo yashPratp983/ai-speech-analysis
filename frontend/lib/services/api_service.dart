@@ -5,7 +5,7 @@ import 'package:http_parser/http_parser.dart';
 import '../models/feedback_response.dart';
 
 class ApiService {
-  static const String baseUrl = 'http://localhost:8000';
+  static const String baseUrl = 'https://ai-speech-analysis.onrender.com';
   
   Future<FeedbackResponse> uploadAudio(Uint8List audioData) async {
     try {
