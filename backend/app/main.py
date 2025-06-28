@@ -19,9 +19,9 @@ logger = logging.getLogger(__name__)
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="Info Origin AI Agent",
+    title="Ai speech therapy",
     version="1.0.0",
-    root_path="/rag-framework",
+    root_path="/sppech-therapy",
     docs_url="/docs",
     redoc_url="/redoc",
     openapi_url="/openapi.json",
