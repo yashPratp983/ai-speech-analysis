@@ -55,7 +55,7 @@ class ApiService {
       var response = await http.post(
         Uri.parse('$baseUrl/api/v1/speech-therapy/feedback'),
         headers: {'Content-Type': 'application/json'},
-        body: json.encode({'transcription': transcription, 'context': context}),
+        body: json.encode({'transcription': transcription}),
       );
 
       if (response.statusCode == 200) {
