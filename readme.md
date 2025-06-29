@@ -12,7 +12,26 @@ AI Speech Tool is a comprehensive application designed to provide speech therapy
    ```bash
    cd backend
    ```
-2. Install the required Python packages:
+
+2. Create a `.env` file in the backend folder with the following environment variables:
+   ```env
+   SPEECH_MODEL=
+   CHAT_MODEL=
+   GROQ_API_KEY=
+   GEMINI_API_KEY=
+   GEMINI_MODEL=
+   TRANSCRIPTION_MODEL=
+   ```
+
+3. Configure the environment variables:
+   - **SPEECH_MODEL**: Specifies the AI model used for speech generation and processing
+   - **CHAT_MODEL**: Language model deployed on Groq platform for conversational AI capabilities
+   - **GROQ_API_KEY**: API key for accessing Groq services (required for chat functionality)
+   - **GEMINI_API_KEY**: API key for accessing Google's Gemini AI services
+   - **GEMINI_MODEL**: Specific Gemini model variant to use (e.g., gemini-pro, gemini-pro-vision)
+   - **TRANSCRIPTION_MODEL**: Choose between "gemini" or "whisper" to decide which model to use for speech-to-text transcription
+
+4. Install the required Python packages:
    ```bash
    pip install -r requirements.txt
    ```
@@ -23,6 +42,7 @@ AI Speech Tool is a comprehensive application designed to provide speech therapy
    ```bash
    cd frontend
    ```
+
 2. Install the required Dart packages:
    ```bash
    flutter pub get
@@ -36,6 +56,7 @@ AI Speech Tool is a comprehensive application designed to provide speech therapy
    ```bash
    cd backend
    ```
+
 2. Run the backend server:
    ```bash
    uvicorn app.main:app
@@ -47,6 +68,7 @@ AI Speech Tool is a comprehensive application designed to provide speech therapy
    ```bash
    cd frontend
    ```
+
 2. Run the frontend application:
    ```bash
    flutter run
