@@ -6,7 +6,7 @@ import '../models/feedback_response.dart';
 
 class ApiService {
   static const String baseUrl =
-      'http://localhost:8000'; // Update with your actual backend URL
+      'https://ai-speech-analysis.onrender.com'; // Update with your actual backend URL
 
   // Sends audio data for real-time transcription
   Future<String> transcribeAudio(Uint8List audioData, String context) async {

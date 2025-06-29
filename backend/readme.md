@@ -53,6 +53,26 @@ Entry point for the FastAPI app. Includes application startup and routing config
 
 ---
 
+### `test/`
+
+The test directory contains comprehensive test suites for validating API functionality and ensuring code quality.
+
+- **API Endpoint Tests**: Test files for validating all API endpoints including:
+  - `test_feedback.py`: Tests for speech feedback API endpoints, covering valid inputs, validation errors, and edge cases
+  - `test_transcribe.py`: Tests for audio transcription endpoints, including file upload validation and format handling
+  - `test_health.py`: Tests for health check endpoints to ensure service monitoring works correctly
+
+- **Service Layer Tests**: Unit tests for core business logic:
+  - Tests for speech processing services
+  - Audio processing utility tests
+  - Configuration and initialization tests
+
+- **Integration Tests**: End-to-end tests that validate the complete request-response cycle across multiple components
+
+- **Test Utilities**: Helper functions and fixtures for setting up test data, mock objects, and common test scenarios
+
+---
+
 ## 🚀 Running the Application
 
 ```bash
@@ -61,3 +81,14 @@ pip install -r requirements.txt
 
 # Run the app
 uvicorn app.main:app --reload
+```
+
+---
+
+## 🧪 Running Tests
+
+```bash
+
+# Run specific test file
+pytest test/test_feedback.py
+```
