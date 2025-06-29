@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 
 @router.post("/speech-therapy/feedback", response_model=Dict)
-async def analyze_speech(transcription: str='', context: str='') -> Dict:
+async def analyze_speech(transcription: str) -> Dict:
     """
     Analyze the provided transcription and context to provide child-friendly speech therapy feedback.
     Enhanced with comprehensive preprocessing and analysis.
