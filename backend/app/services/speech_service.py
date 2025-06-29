@@ -2,6 +2,7 @@ from fastapi import HTTPException
 import logging
 from app.core.prompts.speech_therepy import system_speech_therepy, user_speech_therepy
 from app.core.config.initialiser import initialized_dbs
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -12,8 +13,10 @@ class SpeechTherapyService:
         self.whisper_model = initialized_dbs.get_speech_model()
         self.llm_model = initialized_dbs.get_chat_model()
         self.groq_client= initialized_dbs.get_groq_client()
+        self.gemini_client = initialized_dbs.get_gemini_client()
+        self.gemini_model = initialized_dbs.get_gemini_model()
     
-    async def transcribe_audio(self, audio_file_path: str, custom_prompt=None) -> str:
+    async def transcribe_audio_whisper(self, audio_file_path: str, custom_prompt=None) -> str:
         """
         Convert audio to text using Groq's Whisper model.
         
@@ -35,6 +38,32 @@ class SpeechTherapyService:
             return transcription.text.strip()
         except Exception as e:
             logger.error(f"Transcription error: {str(e)}")
+            raise HTTPException(status_code=500, detail=f"Speech-to-text conversion failed: {str(e)}")
+    
+    async def transcribe_audio_gemini(self, audio_file_path: str) -> str:
+        """
+        Transcribe audio using Gemini's model.
+
+        Args:
+            audio_file_path (str): Path to the audio file.
+            custom_prompt (str, optional): Custom prompt for transcription.
+        Returns:
+            str: Transcribed text from the audio.
+        Raises:
+            HTTPException: If transcription fails.
+        """
+        try:
+            myfile = self.gemini_client.files.upload(file=audio_file_path)
+
+            response = self.gemini_client.models.generate_content(
+                model=self.gemini_model, contents=[myfile]
+            )
+
+            logger.info(f"Transcription response: {response.text}")
+
+            return response.text.strip()
+        except Exception as e:
+            logger.error(f"Gemini transcription error: {str(e)}")
             raise HTTPException(status_code=500, detail=f"Speech-to-text conversion failed: {str(e)}")
     
     async def get_speech_feedback(self, transcribed_text: str) -> str:

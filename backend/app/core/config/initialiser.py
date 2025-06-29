@@ -1,11 +1,7 @@
-import os
-import sys
-import logging
 from groq import Groq
 # Application imports
 from app.core.config.settings import settings
-
-# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from google import genai
 
 class InitializeDbs:
     _instance = None
@@ -25,6 +21,9 @@ class InitializeDbs:
         self.__speech_model = settings.speech_model
         self.__chat_model = settings.chat_model
         self.__groq_api_key = settings.groq_api_key
+        self.__gemini_api_key = settings.gemini_api_key
+        self.__gemini_model = settings.gemini_model
+        self.__transcription_model = settings.transcription_model
 
     def get_speech_model(self):
         # Returns the speech model setting
@@ -41,6 +40,18 @@ class InitializeDbs:
     def get_groq_client(self):
         # Returns a Groq client instance
         return Groq(api_key=self.__groq_api_key)
+    
+    def get_gemini_client(self):
+        # Returns a Gemini client instance
+        return genai.Client(api_key=self.__gemini_api_key)
+    
+    def get_gemini_model(self):
+        # Returns the Gemini model setting
+        return self.__gemini_model
+    
+    def get_transcription_model(self):
+        # Returns the transcription model setting
+        return self.__transcription_model
 
 # Create singleton instance
 initialized_dbs = InitializeDbs()

@@ -7,6 +7,7 @@ import numpy as np
 from scipy import signal
 import librosa
 from app.services.speech_service import speech_service
+from app.core.config.initialiser import initialized_dbs
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -490,12 +491,17 @@ class AudioPreprocessor:
                 logger.info("No speech detected - skipping transcription")
                 return "", analysis_results
             
-            # Proceed with Groq transcription
+            # Proceed with Groq or gemini transcription
             logger.info("Speech detected - proceeding with transcription")
-            transcription = await speech_service.transcribe_audio(
-                audio_file_path=processed_audio_path,  # Use processed path here
-                custom_prompt=custom_prompt
-            )
+            if initialized_dbs.get_transcription_model() == "whisper":
+                transcription = await speech_service.transcribe_audio_whisper(
+                    audio_file_path=processed_audio_path,  # Use processed path here
+                    custom_prompt=custom_prompt
+                )
+            elif initialized_dbs.get_transcription_model() == "gemini":
+                transcription = await speech_service.transcribe_audio_gemini(
+                    audio_file_path=processed_audio_path
+                )
             
             # Post-process transcription
             processed_transcription = self.postprocess_transcription(transcription, context)

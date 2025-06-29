@@ -6,7 +6,10 @@ class Settings(BaseSettings):
     speech_model: str
     chat_model: str
     groq_api_key: str
-    
+    gemini_api_key: str
+    gemini_model: str
+    transcription_model: str
+
     class Config:
         # Configuration for environment variables
         env_file = ".env"
