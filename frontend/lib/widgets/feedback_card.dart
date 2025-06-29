@@ -15,6 +15,7 @@ class FeedbackCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Displays the success or error icon and message
             Row(
               children: [
                 Icon(
@@ -36,6 +37,7 @@ class FeedbackCard extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             
+            // Displays the transcription text if available
             if (feedback.transcription.isNotEmpty) ...[
               const Text(
                 'What you said:',
@@ -63,6 +65,7 @@ class FeedbackCard extends StatelessWidget {
               const SizedBox(height: 16),
             ],
             
+            // Displays the feedback text if available
             if (feedback.feedback.isNotEmpty) ...[
               const Text(
                 'Feedback:',

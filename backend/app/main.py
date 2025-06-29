@@ -37,9 +37,16 @@ app.add_middleware(
 )
 
 def include_routers(app):
-    from app.api.v1 import speech_therepy, health
+    """
+    Includes API routers for different endpoints.
     
-    app.include_router(speech_therepy.router, prefix="/api/v1", tags=["speech therapy"])
+    Args:
+        app (FastAPI): The FastAPI application instance.
+    """
+    from app.api.v1 import feedback, transcribe, health
+    
+    app.include_router(feedback.router, prefix="/api/v1", tags=["feedback"])
+    app.include_router(transcribe.router, prefix="/api/v1", tags=["transcribe"])
     app.include_router(health.router, prefix="/api/v1", tags=["health"])
 
 include_routers(app)

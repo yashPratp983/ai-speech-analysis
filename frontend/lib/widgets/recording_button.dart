@@ -26,6 +26,7 @@ class _RecordingButtonState extends State<RecordingButton>
   @override
   void initState() {
     super.initState();
+    // Initialize the animation controller for scaling effect
     _animationController = AnimationController(
       duration: const Duration(milliseconds: 1000),
       vsync: this,
@@ -42,6 +43,7 @@ class _RecordingButtonState extends State<RecordingButton>
   @override
   void didUpdateWidget(RecordingButton oldWidget) {
     super.didUpdateWidget(oldWidget);
+    // Start or stop the animation based on recording state
     if (widget.isRecording && !oldWidget.isRecording) {
       _animationController.repeat(reverse: true);
     } else if (!widget.isRecording && oldWidget.isRecording) {

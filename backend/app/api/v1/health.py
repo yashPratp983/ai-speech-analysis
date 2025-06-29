@@ -7,10 +7,10 @@ router = APIRouter()
 @router.get("/health", response_model=Dict)
 async def health_check() -> Dict:
     """
-    Health check endpoint for the speech therapy service
+    Health check endpoint for the speech therapy service.
     
     Returns:
-        JSON response with service status
+        Dict: JSON response with service status.
     """
     return JSONResponse(
         status_code=200,

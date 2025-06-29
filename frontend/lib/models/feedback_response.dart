@@ -1,7 +1,11 @@
 class FeedbackResponse {
+  // Indicates if the feedback was successful
   final bool success;
+  // Transcription text associated with the feedback
   final String transcription;
+  // Feedback message
   final String feedback;
+  // Additional message or information
   final String message;
 
   FeedbackResponse({
@@ -11,6 +15,7 @@ class FeedbackResponse {
     required this.message,
   });
 
+  // Factory method to create a FeedbackResponse from JSON
   factory FeedbackResponse.fromJson(Map<String, dynamic> json) {
     return FeedbackResponse(
       success: json['success'] ?? false,

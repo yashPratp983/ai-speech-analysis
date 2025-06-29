@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 class FileHandler:
     """
-    Service for handling file operations including validation and temporary file management
+    Service for handling file operations including validation and temporary file management.
     """
     
     # Supported audio file extensions
@@ -24,13 +24,13 @@ class FileHandler:
     @classmethod
     def validate_audio_file(cls, file: UploadFile) -> Tuple[bool, Optional[str]]:
         """
-        Validate uploaded audio file
+        Validate uploaded audio file.
         
         Args:
-            file: UploadFile object from FastAPI
+            file (UploadFile): UploadFile object from FastAPI.
             
         Returns:
-            Tuple of (is_valid, error_message)
+            Tuple[bool, Optional[str]]: Tuple of (is_valid, error_message).
         """
         try:
             # Check if filename exists
@@ -57,16 +57,16 @@ class FileHandler:
     @classmethod
     async def save_temporary_file(cls, file: UploadFile) -> str:
         """
-        Save uploaded file to temporary location
+        Save uploaded file to temporary location.
         
         Args:
-            file: UploadFile object from FastAPI
+            file (UploadFile): UploadFile object from FastAPI.
             
         Returns:
-            Path to temporary file
+            str: Path to temporary file.
             
         Raises:
-            HTTPException: If file operations fail
+            HTTPException: If file operations fail.
         """
         temp_file = None
         try:
@@ -108,13 +108,13 @@ class FileHandler:
     @classmethod
     def cleanup_file(cls, file_path: str) -> bool:
         """
-        Clean up temporary file
+        Clean up temporary file.
         
         Args:
-            file_path: Path to file to be deleted
+            file_path (str): Path to file to be deleted.
             
         Returns:
-            True if successful, False otherwise
+            bool: True if successful, False otherwise.
         """
         try:
             if file_path and os.path.exists(file_path):
@@ -130,13 +130,13 @@ class FileHandler:
     @asynccontextmanager
     async def temporary_file_context(cls, file: UploadFile):
         """
-        Context manager for handling temporary files with automatic cleanup
+        Context manager for handling temporary files with automatic cleanup.
         
         Args:
-            file: UploadFile object from FastAPI
+            file (UploadFile): UploadFile object from FastAPI.
             
         Yields:
-            Path to temporary file
+            str: Path to temporary file.
             
         Example:
             async with FileHandler.temporary_file_context(audio_file) as temp_path:
