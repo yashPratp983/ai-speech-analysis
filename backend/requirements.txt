@@ -10,3 +10,4 @@ scipy
 librosa
 numpy
 pytest
+google-genai
